@@ -81,23 +81,81 @@ int factorizar(int x)
     int resultado=0;
 
 
-    if(x==0 || x==1)
+    if(x<0)
     {
-        resultado=1;
+        resultado=0;
     }
-    else{
-        resultado = (x*factorizar(x-1));
+    else
+    {
+        if(x==0 || x==1)
+        {
+            resultado=1;
+        }
+        else
+        {
+            resultado = (x*factorizar(x-1));
+        }
     }
+
+
 
     return resultado;
 
 
 }
 
-void mostrarResultados(int suma, int resta, int multiplicacion, float division, int factorialx, int factorialy)
+void mostrarResultados(int suma, int resta, int multiplicacion, float division, int factorialx, int factorialy, int y, int x)
 {
 
-    printf("El resultado de A+B es: %d \nEl resultado de A-B es: %d \nEl resultado de A/B es: %.2f \nEl resultado de A*B es: %d \nEl factorial de A es: %d  y el de B es: %d \n ",suma,resta,division,multiplicacion,factorialx,factorialy);
+    printf("El resultado de A+B es: %d \nEl resultado de A-B es: %d \nEl resultado de A*B es: %d \n",suma,resta,multiplicacion);
+
+    if(y==0)
+    {
+        printf("No se puede dividir por cero. \n");
+
+    }
+    else
+    {
+        printf("El resultado de A/B es: %.2f. \n",division);
+    }
+
+
+
+
+    if(x<=12)
+    {
+        if(factorialx==0)
+        {
+            printf("No se puede factorizar un numero negativo \n");
+        }
+        else
+        {
+            printf("El factorial de A es: %d \n",factorialx);
+        }
+    }
+    else
+    {
+        printf("No se puede factorizar numeros mayores a 12 (el resultado es demasiado grande para mostrarlo)\n");
+    }
+
+
+    if(y<=12)
+    {
+        if(factorialy==0)
+        {
+            printf("No se puede factorizar un numero negativo \n");
+        }
+        else
+        {
+            printf("El factorial de B es: %d \n",factorialy);
+        }
+    }
+    else
+    {
+        printf("No se puede factorizar numeros mayores a 12 (el resultado es demasiado grande para mostrarlo)\n");
+    }
+
+
 
 
 

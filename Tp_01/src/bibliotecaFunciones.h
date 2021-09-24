@@ -75,7 +75,7 @@ int factorizar(int x);
 
 
 
-/** \brief funcion que recibe los resultados de las operaciones y se las muestra al usuario
+/** \brief funcion que recibe los resultados de las operaciones, filtra errores y se las muestra al usuario
  *
  * \param suma int resultado de la suma de A y B
  * \param resta int resultado de la resta de A y B
@@ -83,10 +83,12 @@ int factorizar(int x);
  * \param division float division entre A y B
  * \param factorialx int factorial de A
  * \param factorialy int factorial de B
+ * \param y int primer operando utilizado para validar
+ * \param x int segundo operando utilizado para validar
  * \return void
  *
  */
-void mostrarResultados(int suma, int resta, int multiplicacion, float division, int factorialx, int factorialy);
+void mostrarResultados(int suma, int resta, int multiplicacion, float division, int factorialx, int factorialy, int y, int x);
 
 
 

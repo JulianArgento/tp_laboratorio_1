@@ -1,5 +1,4 @@
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "bibliotecaFunciones.h"
@@ -54,6 +53,11 @@ int main() {
 	                restar(x,y,&resta);
 	                multiplicar(x,y,&multiplicacion);
 	                dividir(x,y,&division);
+	                opero=1;
+	                factorialx=factorizar(x);
+	                factorialy=factorizar(y);
+
+	                printf("Calculos realizados.\n");
 	            }
 	            else
 	            {
@@ -63,33 +67,6 @@ int main() {
 	            }
 
 
-	            if(x<0||y<0)
-	            {
-	                printf("Hubo un error. No se puede factorizar un numero negativo.");
-	                break;
-
-	            }
-	            else
-	            {
-	                factorialx=factorizar(x);
-	                factorialy=factorizar(y);
-
-	            }
-
-
-	            if(dividir(x,y,&division))
-	            {
-	                printf("Hubo un error. No se puede dividir por cero.");
-	                break;
-	            }
-	            else
-	            {
-	                printf("Calculos realizados con exito.");
-	                opero=1;
-	            }
-
-
-
 
 	            break;
 
@@ -97,7 +74,7 @@ int main() {
 
 	            if(opero==1)
 	            {
-	                mostrarResultados(suma,resta,multiplicacion,division,factorialx,factorialy);
+	                mostrarResultados(suma,resta,multiplicacion,division,factorialx,factorialy,y,x);
 
 	            }
 	            else

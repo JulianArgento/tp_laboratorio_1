@@ -50,11 +50,10 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
             }
 
 
-
-
         }
         while(!feof(pFile));
 
+        controller_saveId(atoi(buffer[0])); //guardo el ultimo id
 
     }
 
@@ -73,6 +72,7 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 
 
     int todoOk = 0;
+    int id;
 	Employee* auxEmp = NULL;
 
 	if(pFile != NULL && pArrayListEmployee != NULL)
@@ -84,15 +84,22 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 			{
 
 				ll_add(pArrayListEmployee, auxEmp);
+                id=auxEmp->id;
 				todoOk = 1;
 			}
 
 
 		} while (!feof(pFile));
+
+		 controller_saveId(id); //guardo el ultimo id
+
 	}
     return todoOk;
 
 }
+
+
+
 
 
 

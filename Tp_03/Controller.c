@@ -69,6 +69,39 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
     return todoOk;
 }
 
+int controller_nextId()
+{
+	FILE* f=fopen("lastId.txt", "r");
+	int* currentId=(int*) malloc(sizeof(int));
+    int nextId;
+
+    if(f==NULL)
+    {
+        nextId=1001;
+    }
+    else
+    {
+        fscanf(f, "%d", currentId);
+        nextId=*currentId+1;
+    }
+    fclose(f);
+
+    return nextId;
+}
+
+void controller_saveId(int currentId)
+{
+    FILE* f=fopen("lastId.txt", "r+");
+
+    if(f==NULL)
+    {
+        f=fopen("lastId.txt", "w");
+    }
+
+    fprintf(f,"%d", currentId);
+    fclose(f);
+}
+
 
 /** \brief Alta de empleados
  *
@@ -97,7 +130,8 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
             printf("            *** Alta Empleado ***              \n");
             printf("---------------------------------------------\n");
 
-            id = (ll_len(pArrayListEmployee)+1);
+            id=controller_nextId();
+			employee_setId(auxEmp, id);
 
 
             employee_setId(auxEmp,id);
@@ -119,7 +153,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
             while(horas<=0 || horas>=350 || (esSoloNumerico(horas))==0)
             {
-                printf("error. Ingrese las horas trabajadas del empleado (solo numerico >0 y <350): ");
+                printf("error. Ingrese las horas trabajadas del empleado (solo numerico >0): ");
                 fflush(stdin);
                 scanf("%d",&horas);
             }
@@ -146,7 +180,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
 
             ll_add(pArrayListEmployee, auxEmp);
-
+            controller_saveId(id);
 
             system("cls");
             printf("Alta exitosa.\n");
@@ -388,6 +422,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
             if(rta=='s')
             {
                 ll_remove(pArrayListEmployee,id);
+                employee_delete(emp);
                 printf("Empleado eliminado con exito.\n");
             }
             else

@@ -183,8 +183,23 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
             controller_saveId(id);
 
             system("cls");
-            printf("Alta exitosa.\n");
-            todoOk=1;
+
+
+            if(ll_contains(pArrayListEmployee,auxEmp)==1)
+            {
+                printf("Se ha dado de alta con exito al empleado\n\n");
+                todoOk=1;
+            }
+            else
+            {
+                printf("Hubo un error dando de alta al empleado\n\n");
+                todoOk=0;
+
+            }
+
+
+
+
             printf("Se ha dado de alta al siguiente empleado: \n\n");
             printf("   Id      Nombre      Horas         Sueldo\n");
             printf("---------------------------------------------\n");
@@ -427,12 +442,24 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
                 printf("\n\n");
                 controller_printAnEmployee(emp);
                 printf("\n\n");
-                printf("Se ha eliminado a este empleado con exito.\n");
+
             }
             else
             {
                 printf("Baja cancelada\n");
             }
+
+
+            if(ll_contains(pArrayListEmployee,emp))
+            {
+                printf("Hubo un error, el empleado no fue eliminado\n");
+            }
+            else
+            {
+                printf("Se ha dado de baja con exito al empleado seleccionado\n");
+            }
+
+
 
         }
         else
